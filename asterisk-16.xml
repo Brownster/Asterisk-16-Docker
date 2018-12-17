@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Container>
+  <Category>Communication</Category>
+  <Name>Asterisk 16</Name>
+  <Description>Asterisk 16</Description>
+  <Project>https://www.asterisk.org/</Project>
+  <Registry>https://github.com/brownster/asterisk-16-docker</Registry>
+  <Repository>brownster/asterisk-16</Repository>
+  <BindTime>true</BindTime>
+  <Privileged>false</Privileged>
+  <Environment/>
+  <Networking>
+    <Mode>bridge</Mode>
+    <Publish>
+      <Port>
+        <HostPort>5060</HostPort>
+        <ContainerPort>5060</ContainerPort>
+        <Protocol>tcp</Protocol>
+      </Port>
+      <Port>
+        <HostPort>10000-20000</HostPort>
+        <ContainerPort>10000-20000</ContainerPort>
+        <Protocol>udp</Protocol>
+      </Port>
+    </Publish>
+  </Networking>
+  <Data>
+    <Volume>
+      <HostDir>/mnt/cache/appdata/asterisk-16/etc/msmtprc</HostDir>
+      <ContainerDir>/etc/msmtprc</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+        <Volume>
+      <HostDir>/mnt/cache/appdata/asterisk-16/etc/asterisk</HostDir>
+      <ContainerDir>/etc/asterisk</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+        <Volume>
+      <HostDir>/mnt/cache/appdata/asterisk-16/var/lib/asterisk</HostDir>
+      <ContainerDir>/var/lib/asterisk</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+        <Volume>
+      <HostDir>/mnt/cache/appdata/asterisk-16/var/spool/asterisk</HostDir>
+      <ContainerDir>/var/spool/asterisk</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+        <Volume>
+      <HostDir>/mnt/cache/appdata/asterisk-16/var/ssl</HostDir>
+      <ContainerDir>/var/ssl</ContainerDir>
+      <Mode>rw</Mode>
+    </Volume>
+  </Data>
+  <Version>05616fd2</Version>
+  <WebUI></WebUI>
+  <Banner>https://en.wikipedia.org/wiki/File:Asterisk_logo.svg</Banner>
+  <Icon>https://ih0.redbubble.net/image.365783064.1626/flat,550x550,075,f.u1.jpg</Icon>
+</Container>
