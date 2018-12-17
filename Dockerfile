@@ -96,3 +96,13 @@ RUN mkdir /etc/asterisk \
   && chown -R $ASTERISKUSER. /var/lib/asterisk \
   && chown $ASTERISKUSER:$ASTERISKUSER /etc/freepbxbackup \
   && rm -rf /var/www/html \
+
+#clean up
+  && find /temp -mindepth 1 -delete \
+  && apt-get purge -y \
+  && apt-get --yes autoremove \
+  && apt-get clean all \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+  
+ 
+CMD bash -C '/root/start.sh';'bash' 
