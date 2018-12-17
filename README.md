@@ -1,5 +1,5 @@
 # Asterisk-16-Docker
-Docker for Unraid 6
+Docker for Unraid 6 very much WIP
 
 
 sudo docker run --name asterisk-16
