@@ -13,7 +13,7 @@ ENV AUTOBUILD_UNIXTIME 1418234402
 CMD ["/sbin/my_init"]
 
 # Add start.sh
-#ADD start.sh /root/
+ADD start.sh /root/
 
 #Install deps
 RUN apt-get update \
