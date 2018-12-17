@@ -1,6 +1,6 @@
 #asterisk docker file for unraid 6
-FROM phusion/baseimage:0.9.17
-MAINTAINER marc brown <marc@22walker.co.uk> v0.4
+FROM phusion/baseimage:0.11
+MAINTAINER marc brown <https://github.com/Brownster> v0.1
 
 # Set correct environment variables.
 ENV HOME /root
