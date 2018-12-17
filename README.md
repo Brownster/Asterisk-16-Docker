@@ -7,5 +7,5 @@ sudo docker run --name asterisk-16
 -v /mnt/user/appdata/asterisk/etc/asterisk:/etc/asterisk
 -v /mnt/user/appdata/asterisk/var/lib/asterisk:/var/lib/asterisk
 -v /mnt/user/appdata/asterisk/var/spool/asterisk:/var/spool/asterisk
-#/mnt/user/appdata/asterisk/var/ssl:/ssl
+-v /mnt/user/appdata/asterisk/var/ssl:/ssl
  -net=host -d -t brownster/asterisk-16-docker    
