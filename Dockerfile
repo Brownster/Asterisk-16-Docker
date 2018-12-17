@@ -1,7 +1,6 @@
 #asterisk docker file for unraid 6
 FROM phusion/baseimage:0.11
 MAINTAINER marc brown <https://github.com/Brownster> v0.1
-
 # Set correct environment variables.
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
@@ -11,10 +10,8 @@ ENV ASTERISK_DB_PW pass123
 ENV AUTOBUILD_UNIXTIME 1418234402
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
-
 # Add start.sh
 ADD start.sh /root/
-
 #Install deps
 RUN apt-get update \
     && apt-get install -y \
@@ -30,7 +27,6 @@ RUN apt-get update \
         libssl-dev \
         curl \
         msmtp
-
 # add asterisk user
 RUN groupadd -r $ASTERISKUSER \
   && useradd -r -g $ASTERISKUSER $ASTERISKUSER \
@@ -38,8 +34,7 @@ RUN groupadd -r $ASTERISKUSER \
   && chown $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
   && usermod --home /var/lib/asterisk $ASTERISKUSER \
   && rm -rf /var/lib/apt/lists/* \
-  && apt-get purge -y \
-
+  && apt-get purge -y
 #build pj project
 #build jansson
 WORKDIR /temp/src/
@@ -54,17 +49,14 @@ RUN git clone https://github.com/asterisk/pjproject.git 1>/dev/null \
   && autoreconf -i 1>/dev/null \
   && ./configure 1>/dev/null \
   && make 1>/dev/null \
-  && make install 1>/dev/null \
-  
+  && make install 1>/dev/null \  
 # Download asterisk.
 # $ASTERISKVER (16.1.0).
   && curl -sf -o /tmp/asterisk.tar.gz -L http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-$ASTERISKVER.tar.gz 1>/dev/null \
-
 # gunzip asterisk
   && mkdir /tmp/asterisk \
   && tar -xzf /tmp/asterisk.tar.gz -C /tmp/asterisk --strip-components=1 1>/dev/null
 WORKDIR /tmp/asterisk
-
 # make asterisk.
 RUN mkdir /etc/asterisk \
 # Configure
@@ -88,21 +80,14 @@ RUN mkdir /etc/asterisk \
   && chown $ASRERISKUSER. /var/run/asterisk \
   && chown -R $ASTERISKUSER. /etc/asterisk \
   && chown -R $ASTERISKUSER. /var/lib/asterisk \
-  && chown -R $ASTERISKUSER. /var/www/ \
-  && chown -R $ASTERISKUSER. /var/www/* \
   && chown -R $ASTERISKUSER. /var/log/asterisk \
   && chown -R $ASTERISKUSER. /var/spool/asterisk \
   && chown -R $ASTERISKUSER. /var/run/asterisk \
   && chown -R $ASTERISKUSER. /var/lib/asterisk \
-  && chown $ASTERISKUSER:$ASTERISKUSER /etc/freepbxbackup \
-  && rm -rf /var/www/html \
-
 #clean up
   && find /temp -mindepth 1 -delete \
   && apt-get purge -y \
   && apt-get --yes autoremove \
   && apt-get clean all \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-  
- 
 CMD bash -C '/root/start.sh';'bash' 
