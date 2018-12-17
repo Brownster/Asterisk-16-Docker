@@ -57,7 +57,7 @@ RUN git clone https://github.com/asterisk/pjproject.git 1>/dev/null \
   && make install 1>/dev/null \
   
 # Download asterisk.
-# Currently Certified Asterisk 16.1.0.
+# $ASTERISKVER (16.1.0).
   && curl -sf -o /tmp/asterisk.tar.gz -L http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-$ASTERISKVER.tar.gz 1>/dev/null \
 
 # gunzip asterisk
@@ -66,7 +66,6 @@ RUN git clone https://github.com/asterisk/pjproject.git 1>/dev/null \
 WORKDIR /tmp/asterisk
 
 # make asterisk.
-# ENV rebuild_date 2015-01-29
 RUN mkdir /etc/asterisk \
 # Configure
   && ./configure --with-ssl=/opt/local --with-crypto=/opt/local 1> /dev/null \
@@ -79,7 +78,6 @@ RUN mkdir /etc/asterisk \
   && make install 1> /dev/null \
   && make config 1>/dev/null \
   && ldconfig \
-
   && cd /var/lib/asterisk/sounds \
   && wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-extra-sounds-en-wav-current.tar.gz 1>/dev/null \
   && tar xfz asterisk-extra-sounds-en-wav-current.tar.gz 1>/dev/null \
