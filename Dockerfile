@@ -14,19 +14,7 @@ CMD ["/sbin/my_init"]
 ADD start.sh /root/
 #Install deps
 RUN apt-get update \
-    && apt-get install -y \
-        build-essential \
-        openssl \
-        libxml2-dev \
-        libncurses5-dev \
-        uuid-dev \
-        sqlite3 \
-        libsqlite3-dev \
-        pkg-config \
-        libjansson-dev \
-        libssl-dev \
-        curl \
-        msmtp
+    && apt-get install -y build-essential openssl libxml2-dev libncurses5-dev uuid-dev sqlite3 libsqlite3-dev pkg-config libjansson-dev libssl-dev curl msmtp
 # add asterisk user
 RUN groupadd -r $ASTERISKUSER \
   && useradd -r -g $ASTERISKUSER $ASTERISKUSER \
